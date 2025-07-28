@@ -24,18 +24,19 @@ const LoginForm = () => {
   } = useAuth();
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white ">
-      <Logo />
-      <SparklesCore
-        id="login-sparkles"
-        background="transparent"
-        minSize={0.6}
-        maxSize={1.4}
-        particleDensity={120}
-        particleColor="#FFFFFF"
-        className="absolute inset-0 w-full h-full z-0"
-      />
-
+<main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+  <Logo />
+  
+  <SparklesCore
+    id="login-sparkles"
+    background="transparent"
+    minSize={0.8}
+    maxSize={2.0}
+    particleDensity={80}
+    particleColor="#ffffff"
+    speed={1.5}
+    className="absolute inset-0 w-full h-full z-0"
+  />
       <section
         aria-label="Login Form"
         className="relative z-10 w-full max-w-md mx-auto p-6 sm:p-8 rounded-2xl shadow-lg bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md border border-gray-200 dark:border-neutral-800"
