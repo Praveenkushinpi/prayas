@@ -1,5 +1,5 @@
 /*
-	Installed from https://reactbits.dev/ts/default/
+  Installed from https://reactbits.dev/ts/default/
 */
 
 import React from "react";
@@ -22,6 +22,7 @@ const StarBorder = <T extends React.ElementType = "button">({
   speed = "6s",
   thickness = 1,
   children,
+  style,
   ...rest
 }: StarBorderProps<T>) => {
   const Component = as || "button";
@@ -29,10 +30,10 @@ const StarBorder = <T extends React.ElementType = "button">({
   return (
     <Component 
       className={`star-border-container ${className}`} 
-      {...(rest as any)}
+      {...rest}
       style={{
         padding: `${thickness}px 0`,
-        ...(rest as any).style,
+        ...style,
       }}
     >
       <div
@@ -41,7 +42,8 @@ const StarBorder = <T extends React.ElementType = "button">({
           background: `radial-gradient(circle, ${color}, transparent 10%)`,
           animationDuration: speed,
         }}
-      ></div>
+      >
+      </div>
       <div
         className="border-gradient-top"
         style={{

@@ -35,7 +35,7 @@ export default function ResetPasswordPage() {
     };
 
     checkSession();
-  }, []);
+  }, [supabase.auth]);
 
   const handlePasswordReset = async (e: React.FormEvent) => {
     e.preventDefault();

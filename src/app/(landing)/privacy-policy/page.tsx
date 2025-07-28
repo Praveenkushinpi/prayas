@@ -28,8 +28,8 @@ export default function PrivacyPolicyPage() {
               title: "1. Introduction",
               content: (
                 <p>
-                  This Privacy Policy explains how <strong>PRAYASHAKTAM</strong> ("we",
-                  "our", or "us") collects, uses, and protects your personal information
+                  This Privacy Policy explains how <strong>PRAYASHAKTAM</strong> (&ldquo;we&rdquo;,
+                  &ldquo;our&rdquo;, or &ldquo;us&rdquo;) collects, uses, and protects your personal information
                   when you use our web or mobile application.
                 </p>
               ),
@@ -135,7 +135,7 @@ export default function PrivacyPolicyPage() {
               title: "9. Children's Privacy",
               content: (
                 <p>
-                  PRAYASHAKTAM is not intended for children under 13. We don’t knowingly
+                  PRAYASHAKTAM is not intended for children under 13. We don&rsquo;t knowingly
                   collect data from minors. If we become aware of such data, we delete
                   it promptly.
                 </p>
@@ -146,7 +146,7 @@ export default function PrivacyPolicyPage() {
               content: (
                 <p>
                   We may revise this Privacy Policy occasionally. We will update the
-                  "Last Updated" date and notify users when appropriate.
+                  &ldquo;Last Updated&rdquo; date and notify users when appropriate.
                 </p>
               ),
             },
@@ -173,6 +173,5 @@ export default function PrivacyPolicyPage() {
         </div>
       </div>
     </main>
-
   );
 }

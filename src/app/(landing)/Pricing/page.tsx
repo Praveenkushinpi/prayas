@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { ChevronDown, Star, Zap, Crown, Gift } from "lucide-react";
+import {Star, Zap, Crown, Gift } from "lucide-react";
 import GradientText from "@/components/bits/TextAnimations/GradientText/GradientText";
 import Footer from "@/components/recreated/Footer/footer";
 import StarBorder from "@/components/bits/Animations/StarBorder/StarBorder";
@@ -43,7 +43,7 @@ const faqItems = [
 ];
 
 const PricingPage = () => {
-  const [billingPeriod, setBillingPeriod] = useState("credits");
+  const [] = useState("credits");
 
   const pricingPlans = [
     {

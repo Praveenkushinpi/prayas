@@ -108,7 +108,7 @@ export default function TermsOfServicePage() {
       title: "8. Limitation of Liability",
       content: (
         <p>
-          The service is provided "as is" without warranties of any kind. MOCKCRACK is
+          The service is provided &ldquo;as is&rdquo; without warranties of any kind. MOCKCRACK is
           not liable for indirect, incidental, or consequential damages, data loss,
           or interruptions arising from your use of the platform or reliance on
           AI‑generated outputs.

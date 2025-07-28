@@ -24,8 +24,7 @@ const LoginForm = () => {
   } = useAuth();
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-black">
-      // logo to go back 
+    <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white ">
       <Logo />
       <SparklesCore
         id="login-sparkles"

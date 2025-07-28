@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/shadcn/ui/button";
 import { Input } from "@/components/shadcn/ui/input";
 import { Mail, Send } from "lucide-react";
 import Logo from "@/components/recreated/Logo/logo";

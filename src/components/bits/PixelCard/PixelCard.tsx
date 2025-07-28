@@ -71,8 +71,16 @@ class Pixel {
       this.counter += this.counterStep;
       return;
     }
-    if (this.size >= this.maxSize) this.isShimmer = true;
-    this.isShimmer ? this.shimmer() : (this.size += this.sizeStep);
+    if (this.size >= this.maxSize) {
+      this.isShimmer = true;
+    }
+    
+    if (this.isShimmer) {
+      this.shimmer();
+    } else {
+      this.size += this.sizeStep;
+    }
+    
     this.draw();
   }
 
@@ -88,8 +96,12 @@ class Pixel {
   }
 
   private shimmer() {
-    if (this.size >= this.maxSize) this.isReverse = true;
-    else if (this.size <= this.minSize) this.isReverse = false;
+    if (this.size >= this.maxSize) {
+      this.isReverse = true;
+    } else if (this.size <= this.minSize) {
+      this.isReverse = false;
+    }
+    
     this.size += this.isReverse ? -this.speed : this.speed;
   }
 }
@@ -115,6 +127,8 @@ const VARIANTS = {
 } as const;
 
 type VariantName = keyof typeof VARIANTS;
+type PixelMethod = 'appear' | 'disappear';
+
 interface PixelCardProps {
   variant?: VariantName;
   gap?: number;
@@ -192,8 +206,8 @@ export default function PixelCard({
       pixelsRef.current = pxs;
     };
 
-    const animate = (fn: keyof Pixel) => {
-      frameRef.current = requestAnimationFrame(() => animate(fn));
+    const animate = (method: PixelMethod) => {
+      frameRef.current = requestAnimationFrame(() => animate(method));
       const now = performance.now();
       if (now - lastTimeRef.current < 1000 / 60) return;
       lastTimeRef.current = now;
@@ -204,29 +218,43 @@ export default function PixelCard({
 
       let idle = true;
       pixelsRef.current.forEach((p) => {
-        // @ts-ignore
-        p[fn]();
+        if (method === 'appear') {
+          p.appear();
+        } else if (method === 'disappear') {
+          p.disappear();
+        }
         if (!p.isIdle) idle = false;
       });
-      if (idle && frameRef.current) cancelAnimationFrame(frameRef.current);
+      
+      if (idle && frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
     };
 
     initPixels();
     const resizeObserver = new ResizeObserver(initPixels);
-    containerRef.current && resizeObserver.observe(containerRef.current);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
 
     const onEnter = () => animate("appear");
     const onLeave = () => animate("disappear");
 
     const el = containerRef.current;
-    el?.addEventListener("mouseenter", onEnter);
-    el?.addEventListener("mouseleave", onLeave);
+    if (el) {
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
+    }
 
     return () => {
       resizeObserver.disconnect();
-      el?.removeEventListener("mouseenter", onEnter);
-      el?.removeEventListener("mouseleave", onLeave);
-      frameRef.current && cancelAnimationFrame(frameRef.current);
+      if (el) {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseleave", onLeave);
+      }
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
     };
   }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
 

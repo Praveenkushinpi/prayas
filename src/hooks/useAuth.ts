@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from '@/lib/supabase/client';
+import type { Session } from '@supabase/supabase-js';
 
 export function useAuth() {
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
   const router = useRouter();
 
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +22,7 @@ export function useAuth() {
     setSuccessMsg(null);
   };
 
-  const clearCorruptedCookies = () => {
+  const clearCorruptedCookies = useCallback(() => {
     if (typeof window === 'undefined') return;
     
     try {
@@ -38,9 +39,9 @@ export function useAuth() {
     } catch (error) {
       console.error('Error clearing cookies:', error);
     }
-  };
+  }, []);
 
-  const checkIfUserNeedsOnboarding = async (userId: string): Promise<boolean> => {
+  const checkIfUserNeedsOnboarding = useCallback(async (userId: string): Promise<boolean> => {
     try {
       const response = await fetch(`/api/user/check-onboarding?userId=${userId}`);
       
@@ -55,7 +56,7 @@ export function useAuth() {
       console.error("Error checking onboarding status:", error);
       return true;
     }
-  };
+  }, []);
 
   const handleLogin = async () => {
     clearError();
@@ -328,7 +329,7 @@ export function useAuth() {
     });
 
     return () => subscription.unsubscribe();
-  }, [router]);
+  }, [router, supabase.auth, hasCheckedOnboarding, clearCorruptedCookies, checkIfUserNeedsOnboarding]);
 
   return {
     session,

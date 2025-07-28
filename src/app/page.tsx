@@ -120,54 +120,52 @@ const data = [
   },
 ];
 
-
-export function AppleCardsCarouselDemo() {
-  const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
-  ));
-  return <Carousel items={cards} />;
-}
-
+// ✅ Define the component inside the default export function
 const Landingpage = () => {
+  // Move AppleCardsCarouselDemo inside the main component
+  const AppleCardsCarouselDemo = () => {
+    const cards = data.map((card, index) => (
+      <Card key={card.src} card={card} index={index} />
+    ));
+    return <Carousel items={cards} />;
+  };
+
   return (
     <main className="bg-white dark:bg-black min-h-screen w-full">
       <Navbar />
 
-<section className="relative flex flex-col items-center justify-center text-center py-20 md:py-28 overflow-hidden">
-  
-  <SparklesCore
-    id="tsparticlesfullpage"
-    background="transparent"
-    minSize={0.6}
-    maxSize={1.4}
-    particleDensity={100}
-    particleColor="#FFFFFF"
-    className="absolute inset-0 w-full h-full z-0"
-  />
+      <section className="relative flex flex-col items-center justify-center text-center py-20 md:py-28 overflow-hidden">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          particleColor="#FFFFFF"
+          className="absolute inset-0 w-full h-full z-0"
+        />
 
-  <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center py-20">
-    <GradientText
-      colors={["#ffffff", "#f8c8dc", "#fff9b0", "#f8c8dc", "#ffffff"]}
-      animationSpeed={6}
-      showBorder={false}
-      className="text-5xl  md:text-6xl lg:text-8xl xl:text-9xl text-center leading-tight"
-    >
-      PRAYASTHANAM
-    </GradientText>
-    <p className="mt-6 text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl py-8">
-      Practice Makes Perfect — Mock Tests for the Modern Learner
-    </p>
-  </div>
-</section>
+        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center py-20">
+          <GradientText
+            colors={["#ffffff", "#f8c8dc", "#fff9b0", "#f8c8dc", "#ffffff"]}
+            animationSpeed={6}
+            showBorder={false}
+            className="text-5xl md:text-6xl lg:text-8xl xl:text-9xl text-center leading-tight"
+          >
+            PRAYASTHANAM
+          </GradientText>
+          <p className="mt-6 text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl py-8">
+            Practice Makes Perfect — Mock Tests for the Modern Learner
+          </p>
+        </div>
+      </section>
 
-
-<section id="features" className="max-w-7xl mx-auto py-16">
-  <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">
-    Everything You Need to Succeed
-  </h2>
-  <AppleCardsCarouselDemo />
-</section>
-
+      <section id="features" className="max-w-7xl mx-auto py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black dark:text-white">
+          Everything You Need to Succeed
+        </h2>
+        <AppleCardsCarouselDemo />
+      </section>
 
       <section className="text-center py-20 bg-gray-50 dark:bg-neutral-900">
         <div className="max-w-4xl mx-auto">
